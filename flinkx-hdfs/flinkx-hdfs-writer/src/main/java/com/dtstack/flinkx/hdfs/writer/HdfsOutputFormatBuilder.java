@@ -43,6 +43,9 @@ public class HdfsOutputFormatBuilder extends RichOutputFormatBuilder {
             case "ORC":
                 format = new HdfsOrcOutputFormat();
                 break;
+            case "PARQUET":
+                format = new HdfsParquetOutputFormat();
+                break;
             default:
                 throw new IllegalArgumentException("Unsupported HDFS file type: " + type);
         }
@@ -68,6 +71,10 @@ public class HdfsOutputFormatBuilder extends RichOutputFormatBuilder {
 
     public void setDelimiter(String delimiter) {
         format.delimiter = delimiter;
+    }
+
+    public void setRowGroupSize(int rowGroupSize){
+        format.rowGroupSize = rowGroupSize;
     }
 
     public void setFullColumnTypes(List<String> fullColumnTypes) {
